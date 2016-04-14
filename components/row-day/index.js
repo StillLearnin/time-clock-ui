@@ -21,13 +21,15 @@ var RowDay = React.createClass ({
     return <td onClick={this.toggleCollapsed}
                 className={styles.day}>
         <div className={styles.day}>{day.date}</div>
-        <div className={styles.day}>{day.total.hours} Hrs. {day.total.minutes} Min.</div>
+        { this.getTotalTime(true) }
     </td>;
   },
 
   getTimeDetail() {
     if (this.state.day.isExpanded == false)
-        return <td className={styles.punches} onClick={this.toggleCollapsed}/>;
+        return <td className={styles.punches} onClick={this.toggleCollapsed}>
+            {this.getTotalTime(false)}
+        </td>;
 
     return <td className={styles.punches}>
     {this.props.day.punches.map(this.getRowTime)}</td>;
@@ -35,6 +37,14 @@ var RowDay = React.createClass ({
 
   getRowTime(punch) {
       return <RowTime key={punch.id} punch={punch}/>
+  },
+
+  getTotalTime(showExpanded) {
+      var day = this.props.day;
+        if (day.isExpanded == showExpanded)
+            return <div className={styles.day}>{day.total.hours} Hrs. {day.total.minutes} Min.</div>;
+        else
+            return null;
   },
 
   toggleCollapsed() {

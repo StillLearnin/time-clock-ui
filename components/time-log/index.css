@@ -1,0 +1,47 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #0070A8;
+    width: 350px;
+}
+
+table,
+table th {
+    padding: 10px 10px;
+}
+
+
+thead th {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F));
+    background: -moz-linear-gradient( center top, #006699 5%, #00557F 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
+    background-color: #006699;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    border-left: 1px solid #0070A8;
+    text-align: center;
+}
+
+thead th:first-child {
+    border: none;
+}
+
+tbody td {
+    color: #00496B;
+    /*border-left: 1px solid #E1EEF4;*/
+    /*font-size: 12px;
+    font-weight: normal;*/
+}
+
+tr {
+    border-top: 1px solid rgba(0, 73, 107, 0.24);
+}
+
+tfoot td div {
+    border-top: 1px solid #006699;
+    background-color: #E1EEF4;
+}

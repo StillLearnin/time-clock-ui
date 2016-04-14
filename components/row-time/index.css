@@ -1,0 +1,16 @@
+.punchRow div {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+    padding: 5px 30px;
+}
+
+/*.punchIn {
+}*/
+
+.punchOut {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,c6c6c6+51&0+0,0.68+35 */
+    background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(216,216,216,0.68) 35%, rgba(198,198,198,0.68) 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(216,216,216,0.68) 35%,rgba(198,198,198,0.68) 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(216,216,216,0.68) 35%,rgba(198,198,198,0.68) 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#adc6c6c6',GradientType=1 ); /* IE6-9 */
+}

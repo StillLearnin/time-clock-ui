@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #EEE;
+    height: 100%;
+}
+
+.timeEditor {
+    border: 1px solid #0070A8;
+    border-radius: 5px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    background-color: #FFF;
+    -webkit-box-shadow: 10px 10px 16px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 16px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 16px 0px rgba(0,0,0,0.75);
+}
+
+input, button {
+    margin: 5px 0;
+}
+
+button {
+    height: 2em;
+}

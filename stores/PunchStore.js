@@ -6,28 +6,28 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * TodoStore
+ * PunchStore
  */
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var TodoConstants = require('../constants/TodoConstants');
+var PunchConstants = require('../constants/PunchConstants');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
 
-var _todos = {};
+var _punches = {};
 
 /**
- * Create a TODO item.
- * @param  {string} text The content of the TODO
+ * Create a PUNCH item.
+ * @param  {string} text The content of the PUNCH
  */
 function create(text) {
   // Hand waving here -- not showing how this interacts with XHR or persistent
   // server-side storage.
   // Using the current timestamp + random number in place of a real id.
   var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  _todos[id] = {
+  _punches[id] = {
     id: id,
     complete: false,
     text: text
@@ -35,54 +35,54 @@ function create(text) {
 }
 
 /**
- * Update a TODO item.
+ * Update a PUNCH item.
  * @param  {string} id
  * @param {object} updates An object literal containing only the data to be
  *     updated.
  */
 function update(id, updates) {
-  _todos[id] = assign({}, _todos[id], updates);
+  _punches[id] = assign({}, _punches[id], updates);
 }
 
 /**
- * Update all of the TODO items with the same object.
+ * Update all of the PUNCH items with the same object.
  * @param  {object} updates An object literal containing only the data to be
  *     updated.
  */
 function updateAll(updates) {
-  for (var id in _todos) {
+  for (var id in _punches) {
     update(id, updates);
   }
 }
 
 /**
- * Delete a TODO item.
+ * Delete a PUNCH item.
  * @param  {string} id
  */
 function destroy(id) {
-  delete _todos[id];
+  delete _punches[id];
 }
 
 /**
- * Delete all the completed TODO items.
+ * Delete all the completed PUNCH items.
  */
 function destroyCompleted() {
-  for (var id in _todos) {
-    if (_todos[id].complete) {
+  for (var id in _punches) {
+    if (_punches[id].complete) {
       destroy(id);
     }
   }
 }
 
-var TodoStore = assign({}, EventEmitter.prototype, {
+var PunchStore = assign({}, EventEmitter.prototype, {
 
   /**
-   * Tests whether all the remaining TODO items are marked as completed.
+   * Tests whether all the remaining PUNCH items are marked as completed.
    * @return {boolean}
    */
   areAllComplete: function() {
-    for (var id in _todos) {
-      if (!_todos[id].complete) {
+    for (var id in _punches) {
+      if (!_punches[id].complete) {
         return false;
       }
     }
@@ -90,11 +90,11 @@ var TodoStore = assign({}, EventEmitter.prototype, {
   },
 
   /**
-   * Get the entire collection of TODOs.
+   * Get the entire collection of PUNCHs.
    * @return {object}
    */
   getAll: function() {
-    return _todos;
+    return _punches;
   },
 
   emitChange: function() {
@@ -121,49 +121,49 @@ AppDispatcher.register(function(action) {
   var text;
 
   switch(action.actionType) {
-    case TodoConstants.TODO_CREATE:
+    case PunchConstants.PUNCH_CREATE:
       text = action.text.trim();
       if (text !== '') {
         create(text);
-        TodoStore.emitChange();
+        PunchStore.emitChange();
       }
       break;
 
-    case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
-      if (TodoStore.areAllComplete()) {
+    case PunchConstants.PUNCH_TOGGLE_COMPLETE_ALL:
+      if (PunchStore.areAllComplete()) {
         updateAll({complete: false});
       } else {
         updateAll({complete: true});
       }
-      TodoStore.emitChange();
+      PunchStore.emitChange();
       break;
 
-    case TodoConstants.TODO_UNDO_COMPLETE:
+    case PunchConstants.PUNCH_UNDO_COMPLETE:
       update(action.id, {complete: false});
-      TodoStore.emitChange();
+      PunchStore.emitChange();
       break;
 
-    case TodoConstants.TODO_COMPLETE:
+    case PunchConstants.PUNCH_COMPLETE:
       update(action.id, {complete: true});
-      TodoStore.emitChange();
+      PunchStore.emitChange();
       break;
 
-    case TodoConstants.TODO_UPDATE_TEXT:
+    case PunchConstants.PUNCH_UPDATE_TEXT:
       text = action.text.trim();
       if (text !== '') {
         update(action.id, {text: text});
-        TodoStore.emitChange();
+        PunchStore.emitChange();
       }
       break;
 
-    case TodoConstants.TODO_DESTROY:
+    case PunchConstants.PUNCH_DESTROY:
       destroy(action.id);
-      TodoStore.emitChange();
+      PunchStore.emitChange();
       break;
 
-    case TodoConstants.TODO_DESTROY_COMPLETED:
+    case PunchConstants.PUNCH_DESTROY_COMPLETED:
       destroyCompleted();
-      TodoStore.emitChange();
+      PunchStore.emitChange();
       break;
 
     default:
@@ -171,4 +171,4 @@ AppDispatcher.register(function(action) {
   }
 });
 
-module.exports = TodoStore;
+module.exports = PunchStore;

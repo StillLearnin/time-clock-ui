@@ -6,17 +6,17 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * TodoConstants
+ * PunchConstants
  */
 
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
-  TODO_CREATE: null,
-  TODO_COMPLETE: null,
-  TODO_DESTROY: null,
-  TODO_DESTROY_COMPLETED: null,
-  TODO_TOGGLE_COMPLETE_ALL: null,
-  TODO_UNDO_COMPLETE: null,
-  TODO_UPDATE_TEXT: null
+  PUNCH_CREATE: null,
+  PUNCH_COMPLETE: null,
+  PUNCH_DESTROY: null,
+  PUNCH_DESTROY_COMPLETED: null,
+  PUNCH_TOGGLE_COMPLETE_ALL: null,
+  PUNCH_UNDO_COMPLETE: null,
+  PUNCH_UPDATE_TEXT: null
 });

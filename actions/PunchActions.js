@@ -6,20 +6,20 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * TodoActions
+ * PunchActions
  */
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var TodoConstants = require('../constants/TodoConstants');
+var PunchConstants = require('../constants/PunchConstants');
 
-var TodoActions = {
+var PunchActions = {
 
   /**
    * @param  {string} text
    */
   create: function(text) {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_CREATE,
+      actionType: PunchConstants.PUNCH_CREATE,
       text: text
     });
   },
@@ -30,7 +30,7 @@ var TodoActions = {
    */
   updateText: function(id, text) {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_UPDATE_TEXT,
+      actionType: PunchConstants.PUNCH_UPDATE_TEXT,
       id: id,
       text: text
     });
@@ -38,13 +38,13 @@ var TodoActions = {
 
   /**
    * Toggle whether a single ToDo is complete
-   * @param  {object} todo
+   * @param  {object} punch
    */
-  toggleComplete: function(todo) {
-    var id = todo.id;
-    var actionType = todo.complete ?
-        TodoConstants.TODO_UNDO_COMPLETE :
-        TodoConstants.TODO_COMPLETE;
+  toggleComplete: function(punch) {
+    var id = punch.id;
+    var actionType = punch.complete ?
+        PunchConstants.PUNCH_UNDO_COMPLETE :
+        PunchConstants.PUNCH_COMPLETE;
 
     AppDispatcher.dispatch({
       actionType: actionType,
@@ -57,7 +57,7 @@ var TodoActions = {
    */
   toggleCompleteAll: function() {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_TOGGLE_COMPLETE_ALL
+      actionType: PunchConstants.PUNCH_TOGGLE_COMPLETE_ALL
     });
   },
 
@@ -66,7 +66,7 @@ var TodoActions = {
    */
   destroy: function(id) {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_DESTROY,
+      actionType: PunchConstants.PUNCH_DESTROY,
       id: id
     });
   },
@@ -76,10 +76,10 @@ var TodoActions = {
    */
   destroyCompleted: function() {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_DESTROY_COMPLETED
+      actionType: PunchConstants.PUNCH_DESTROY_COMPLETED
     });
   }
 
 };
 
-module.exports = TodoActions;
+module.exports = PunchActions;

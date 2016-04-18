@@ -24,6 +24,10 @@ export default class App extends Component {
             <SceneLink param="home" onClick={this.props.navigate}>Home</SceneLink>
           </li>
 
+          <li role="presentation" className={this.props.scene === 'splash' ? 'active' : ''}>
+            <SceneLink param="splash" onClick={this.props.navigate}>Splash</SceneLink>
+          </li>
+
           <li role="presentation" className={this.props.scene === 'devices' ? 'active' : ''}>
             <SceneLink param="devices" onClick={this.props.navigate}>Devices</SceneLink>
           </li>
@@ -35,13 +39,12 @@ export default class App extends Component {
         </Scene>
 
         <Scene scene="home" current={scene}>
-          <Home />
+          <Home {...this.props}/>
         </Scene>
 
         <Scene scene="devices" current={scene}>
           <DevicesContainer />
         </Scene>
-
         <hr />
         <p className="help-block">
           <strong>Use CTRL + H to show/hide the redux dev tool.</strong> <br />

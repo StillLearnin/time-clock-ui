@@ -10,10 +10,7 @@ export default class Home extends Component {
         <h1>
           Home
         </h1>
-        <div className="alert alert-info" role="alert">
-          This is a linked page.
-        </div>
-        <TimeLog days={daysData} />
+        <TimeLog {...this.props} />
       </div>
     );
   }

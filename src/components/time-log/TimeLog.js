@@ -5,7 +5,6 @@ import styles from './TimeLog.css';
 export default class TimeLog extends Component {
 
   componentWillMount() {
-    debugger;
     this.props.fetch();
   }
 

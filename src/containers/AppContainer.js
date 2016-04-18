@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (targetScene) => {
-      dispatch(appNavigate(targetScene));
+      dispatch(actions.appNavigate(targetScene));
     },
 
     fetch: () => {

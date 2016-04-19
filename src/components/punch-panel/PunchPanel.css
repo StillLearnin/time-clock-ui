@@ -1,8 +1,67 @@
+.punchPanelWrapper {
+    background-color: #FFF;
+    padding: 3px;
+}
 
 .punchPanel {
-    width: 50%;
+    border: 1px solid #006699;
+    padding: 5px;
+}
+
+.clock {
+    text-align: center;
+    padding: 15px;
+    font-size: 35px;
 }
 
 .punchPanel button {
     width: 100%;
+    height: 100px;
+    color: #FFFFFF;
+    border-radius: 3px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.punchIn {
+    border: 1px solid #076D00;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #2FE422), color-stop(1, rgba(31, 153, 0, 0.66)));
+    background-color: #076D00;
+}
+
+.punchIn:hover {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgba(31, 153, 0, 0.66)), color-stop(1, #2FE422));
+    background-color: #076D00;
+}
+
+.punchIn:active {
+    background: none;
+    background-color: #076D00;
+}
+
+.punchOut {
+    border: 1px solid #6D0000;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #E42222), color-stop(1, rgba(153, 0, 0, 0.66)));
+    background-color: #6D0000;
+}
+
+.punchOut:hover {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, rgba(153, 0, 0, 0.66)), color-stop(1, #E42222));
+    background-color: #6D0000;
+}
+
+.punchOut:active {
+    background: none;
+    background-color: #6D0000;
+}
+
+@media (min-width: 600px) {
+    .punchPanelWrapper {
+        max-width: 300px;
+        margin: auto;
+        margin-right: 0px;
+    }
 }

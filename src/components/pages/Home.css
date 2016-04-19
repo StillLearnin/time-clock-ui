@@ -1,0 +1,18 @@
+
+
+@media (min-width: 600px) {
+    .appBody {
+        display: flex;
+        width: 100%;
+        background-color: dimgray;
+    }
+
+    .container, .containerRight{
+        width: 50%;
+        padding: 10px;
+    }
+
+    .containerRight {
+        background-color: #FFF;
+    }
+}

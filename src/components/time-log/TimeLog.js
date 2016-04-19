@@ -38,7 +38,7 @@ export default class TimeLog extends Component {
             <tfoot>
             </tfoot>
             <tbody>
-                {this.props.items.map(this.getDayRow)}
+                {items.map(this.getDayRow)}
             </tbody>
         </table>
     )

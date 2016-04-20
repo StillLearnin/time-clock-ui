@@ -13,15 +13,15 @@ export default class TimeLog extends Component {
 
     const { days, daysFetching } = this.props;
 
-    if (daysFetching) {
-      return (
-        <div className={css.timeLogPanel}>
-          <div className={appcss.alertInfo}>
-            Loading...
-          </div>
-        </div>
-      );
-    }
+    // if (daysFetching) {
+    //   return (
+    //     <div className={css.timeLogPanel}>
+    //       <div className={appcss.alertInfo}>
+    //         Loading...
+    //       </div>
+    //     </div>
+    //   );
+    // }
 
     if (!days || days.length<1) {
       return (

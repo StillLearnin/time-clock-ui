@@ -37,7 +37,7 @@ export default class PunchPanel extends Component {
   digclock() {
     var d = moment().format("dddd, MMMM D, YYYY");
     document.getElementById("date").innerHTML = d;
-    var t = moment().format("h:MM:ss A");
+    var t = moment().format("h:mm:ss A");
     document.getElementById("clock").innerHTML = t;
   }
 }

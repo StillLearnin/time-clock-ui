@@ -5,7 +5,8 @@ export const DAYS_FETCHING = 'DAYS_FETCHING';
 export const DAYS_FETCHED = 'DAYS_FETCHED';
 export const DAYS_SAVING = 'DAYS_SAVING';
 export const DAYS_SAVED = 'DAYS_SAVED';
-import localforage from 'localforage'
+import localforage from 'localforage';
+import moment from 'moment';
 
 export function appNavigate(value) {
   return {
@@ -21,23 +22,45 @@ export function punchClock() {
       if (!days)
         days = []
 
-      days.push({
-          date: "Dud",
-          isExpanded: true,
-          total: {
-            hours: 5,
-            minutes: 0
-          },
-          punches: [{
-            id: "asdfd",
-            in : "8:30",
-            out: "12:30"
-          }, {
-            id: "sdfas",
-            in : "1:00",
-            out: "-"
-          }]
-      })
+      var existingDay;
+      var today = moment().format("dddd, MMMM D");
+      for (var index = 0; index < days.length; index++) {
+        if (days[index].date === today){
+          existingDay = days[index];
+          break;
+        }
+      }
+      if (!existingDay)
+        existingDay = {
+            key: today,
+            date: today,
+            isExpanded: true,
+            total: {
+              hours: 0,
+              minutes: 0
+            },
+            punches: [],
+            isNew: true,
+            isChanged: true
+        };
+      else {
+        existingDay.isExpanded = true;
+        existingDay.isChanged = true;
+      }
+
+      existingDay.punches.push(
+        {
+          id: moment().format("h:mm:ss"),
+          in : moment().format("h:mm:ss"),
+          out: moment().format("h:mm:ss"),
+          isNew: true,
+          isChanged: true
+        }
+      );
+
+      if (existingDay.isNew == true)
+        days.push(existingDay);
+
       dispatch(saveDays(days))
     }).catch(function (err) {
       // we got an error

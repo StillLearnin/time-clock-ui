@@ -1,11 +1,17 @@
 .punchPanelWrapper {
     background-color: #FFF;
-    padding: 3px;
+    padding: 5px;
 }
 
-.punchPanel {
+.clockPanel {
     border: 1px solid #006699;
     padding: 5px;
+    margin-bottom: 10px;
+}
+
+.date {
+    text-align: center;
+    padding: 10px;
 }
 
 .clock {
@@ -15,10 +21,10 @@
     background-color: #CCCCCC;
     border-radius: 3px;
     border: 1px solid dimgray;
-    margin: 0 0 5px 0;
+    margin: 0 25px 15px 25px;
 }
 
-.punchPanel button {
+.punchPanelWrapper button {
     width: 100%;
     height: 100px;
     color: #FFFFFF;

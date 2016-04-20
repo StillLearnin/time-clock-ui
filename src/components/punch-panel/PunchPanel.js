@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import css from './PunchPanel.css';
+import moment from 'moment';
 
 export default class PunchPanel extends Component {
 
@@ -17,13 +18,12 @@ export default class PunchPanel extends Component {
     var btText = s ? "Punch In" : "Punch Out";
     return (
       <div className={css.punchPanelWrapper}>
-        <div className={css.punchPanel}>
-            <div id="clock" className={css.clock}>
-              Loading...
-            </div>
-            <button type="button" className={bt}
-                    onClick={() => this.punch()}>{btText}</button>
+        <div className={css.clockPanel}>
+          <div id="date" className={css.date}>Loading</div>
+          <div id="clock" className={css.clock}>...</div>
         </div>
+        <button type="button" className={bt}
+                onClick={() => this.punch()}>{btText}</button>
       </div>
     )
   }
@@ -91,12 +91,9 @@ export default class PunchPanel extends Component {
   }
 
   digclock() {
-    var d = new Date();
-    var options = {
-      weekday: "long", year: "numeric", month: "short",
-      day: "numeric"
-    };
-    var t = d.toLocaleTimeString("en-us", options);
+    var d = moment().format("dddd, MMMM D, YYYY");
+    document.getElementById("date").innerHTML = d;
+    var t = moment().format("h:MM:ss A");
     document.getElementById("clock").innerHTML = t;
   }
 }

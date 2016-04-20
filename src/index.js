@@ -21,7 +21,10 @@ import myReducers from './reducers';
 
 // configure dev tools
 const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey='ctrl-h' changePositionKey='ctrl-q' defaultPosition='right' defaultIsVisible={true}>
+  <DockMonitor toggleVisibilityKey='ctrl-h'
+              changePositionKey='ctrl-q'
+              defaultPosition='right'
+              defaultIsVisible={false}>
     <LogMonitor theme='tomorrow' preserveScrollTop={true} />
   </DockMonitor>
 );

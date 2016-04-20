@@ -27,7 +27,7 @@ export default class TimeLog extends Component {
       return (
         <div className={css.timeLogPanel}>
           <div className={appcss.alertInfo}>
-            No punches found, please add one.
+            <p><span className={appcss.textBold}>No punches found.</span> Feel free to punch in if you're ready to start working.</p>
           </div>
         </div>
       );

@@ -2,9 +2,13 @@
     height: 100%;
 }
 
+.textBold {
+    font-weight: bolder;
+}
+
 .alertInfo {
     background-color: #d9edf7;
-    padding: 20px;
+    padding: 10px 30px;
     border-radius: 5px;
     margin: 15px;
     color: #31708f;

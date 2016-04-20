@@ -31,12 +31,7 @@ export default class PunchPanel extends Component {
   }
 
   punch() {
-    var punch = {
-        id: "asdfdf",
-        in : "4:47",
-        out: "8:30"
-      };
-    this.props.savePunch(punch);
+    this.props.punchClock();
   }
 
   digclock() {

@@ -22,6 +22,10 @@ const mapDispatchToProps = (dispatch) => {
 
     saveDays: (days) => {
       dispatch(actions.saveDays(days));
+    },
+
+    punchClock: () => {
+      dispatch(actions.punchClock());
     }
   }
 }

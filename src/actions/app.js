@@ -1,35 +1,9 @@
 export const APP_NAVIGATE = 'APP_NAVIGATE';
-export const PUNCHES_FETCHING = 'PUNCHES_FETCHING';
-export const PUNCHES_FETCHED = 'PUNCHES_FETCHED';
-
-import localApi from '../libs/localApi';
-
-// define a local db for devices (simulated async api)
-let myAPI = new localApi(
-  {
-    tableName: 'days', // used as local storage key
-    fields: {               // row structure (pre loaded for new item)
-      Id: null,
-      Date: "Monday April 11, 2016",
-      IsExpanded: false,
-      Total: {
-        hours: 1,
-        minutes: 0
-      },
-      punches: [
-        {
-          id: "asdfdf",
-          in : "4:47",
-          out: "8:30"
-        },
-        {
-          id: "afasdf",
-          in : "8:47",
-          out: "9:30"
-        }
-    ]
-    }
-  });
+export const DAYS_FETCHING = 'DAYS_FETCHING';
+export const DAYS_FETCHED = 'DAYS_FETCHED';
+export const DAYS_SAVING = 'DAYS_SAVING';
+export const DAYS_SAVED = 'DAYS_SAVED';
+import localForage from 'localforage'
 
 export function appNavigate(value) {
   return {
@@ -45,21 +19,60 @@ export function fetch() {
     dispatch(fetching())
 
     // async load
-    myAPI.getAll().then(
+    localForage.getItem('days').then(
       (data) => dispatch(fetched(data))
-    );
+    ).catch(function (err) {
+      // we got an error
+    });
   }
+}
+
+export function saveDays(days) {
+  return function (dispatch) {
+
+    // show a loading
+    dispatch(saving())
+
+    // async load
+    localForage.setItem('days', days).then(function () {
+      return localForage.getItem('days');
+    }).then(function (data) {
+      // we got our data
+      (data) => dispatch(saved(data))
+    }).catch(function (err) {
+      // we got an error
+    });
+  }
+}
+
+export function savePunch(punch) {
+  // var days = localForage.getItem('days');
+  // if (!days)
+  // localForage.setItem('days', days)
 }
 
 export function fetching() {
   return {
-    type: PUNCHES_FETCHING
+    type: DAYS_FETCHING
   };
 }
 
 export function fetched(data) {
   return {
-    type: PUNCHES_FETCHED,
+    type: DAYS_FETCHED,
+    payload: data
+  };
+}
+
+export function saving() {
+  return {
+    type: DAYS_SAVING
+  };
+}
+
+export function saved(data) {
+  return {
+    type: DAYS_SAVED,
     payload: data
   };
 }

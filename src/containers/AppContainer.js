@@ -18,6 +18,10 @@ const mapDispatchToProps = (dispatch) => {
 
     fetch: () => {
       dispatch(actions.fetch());
+    },
+
+    saveDays: (days) => {
+      dispatch(actions.saveDays(days));
     }
   }
 }

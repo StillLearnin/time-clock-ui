@@ -10,9 +10,9 @@ export default class TimeLog extends Component {
 
   render() {
 
-    const { items, itemsFetching } = this.props;
+    const { days, daysFetching } = this.props;
 
-    if (itemsFetching) {
+    if (daysFetching) {
       return (
         <div className="alert alert-warning" role="alert">
           Loading...
@@ -20,7 +20,7 @@ export default class TimeLog extends Component {
       );
     }
 
-    if (!items || items.length<1) {
+    if (!days || days.length<1) {
       return (
         <div className="alert alert-info" role="alert">
           No punches found, please add one.
@@ -38,7 +38,7 @@ export default class TimeLog extends Component {
             <tfoot>
             </tfoot>
             <tbody>
-                {items.map(this.getDayRow)}
+                {days.map(this.getDayRow)}
             </tbody>
         </table>
     )

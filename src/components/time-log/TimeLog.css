@@ -4,12 +4,15 @@
 
 .timeLogPanel {
     background-color: #FFF;
+    margin: 5px;
+    display: flex;
 }
 
 table {
     border-collapse: collapse;
     border: 1px solid #0070A8;
-    width: auto;
+    width: 100%;
+    max-width: 500px;
 }
 
 table,

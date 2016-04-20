@@ -14,5 +14,6 @@
     .containerRight {
         width: 100%;
         background-color: #FEFEFE;
+        overflow: auto;
     }
 }

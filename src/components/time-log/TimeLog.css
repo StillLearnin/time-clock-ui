@@ -58,4 +58,8 @@ tfoot td div {
     .timeLogPanel {
         width: 100%;
     }
+
+    table {
+        margin-left: 0;
+    }
 }

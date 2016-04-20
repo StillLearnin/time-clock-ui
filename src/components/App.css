@@ -1,3 +1,13 @@
 .container {
     height: 100%;
 }
+
+.alertInfo {
+    background-color: #d9edf7;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 15px;
+    color: #31708f;
+    font-size: 14px;
+    border: 1px solid #bce8f1;
+}

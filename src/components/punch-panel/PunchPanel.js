@@ -22,8 +22,10 @@ export default class PunchPanel extends Component {
           <div id="date" className={css.date}>Loading</div>
           <div id="clock" className={css.clock}>...</div>
         </div>
-        <button type="button" className={bt}
+        <div className={css.buttonPanel}>
+          <button type="button" className={bt}
                 onClick={() => this.punch()}>{btText}</button>
+        </div>
       </div>
     )
   }

@@ -5,14 +5,15 @@
 .timeLogPanel {
     background-color: #FFF;
     margin: 5px;
-    display: flex;
+    width: 500px;
 }
 
 table {
     border-collapse: collapse;
     border: 1px solid #0070A8;
     width: 100%;
-    max-width: 500px;
+    margin: auto;
+    max-width: 480px;
 }
 
 table,
@@ -51,4 +52,10 @@ tr {
 tfoot td div {
     border-top: 1px solid #006699;
     background-color: #E1EEF4;
+}
+
+@media (min-width: 750px) {
+    .timeLogPanel {
+        width: 100%;
+    }
 }

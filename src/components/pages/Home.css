@@ -1,7 +1,25 @@
+.homeBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    background-color: dimgray;
+}
 
-@media (min-width: 600px) {
+.containerRight {
+    display: flex;
+}
+
+.containerRight {
+    background-color: #FEFEFE;
+    overflow-y: auto;
+}
+
+@media (min-width: 750px) {
     .homeBody {
-        display: flex;
+        flex-direction: row;
+        align-items: stretch;
         width: 100%;
         height: 100%;
         background-color: dimgray;
@@ -13,7 +31,5 @@
 
     .containerRight {
         width: 100%;
-        background-color: #FEFEFE;
-        overflow: auto;
     }
 }

@@ -2,9 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 
 // components (scenes) that will be displayed by this component
-import Splash from './pages/Splash';
 import Home from './pages/Home';
-import DevicesContainer from '../containers/DevicesContainer';
 
 // scenes is a silly trick to avoid routes, check the file to see it how works
 import {Scene, SceneLink} from './Scenes';
@@ -17,33 +15,8 @@ export default class App extends Component {
 
     return (
       <div className="container">
-
-        <ul className="nav nav-tabs">
-          {/* this should be inside another component because is repeating, but.. */}
-          <li role="presentation" className={this.props.scene === 'home' ? 'active' : ''}>
-            <SceneLink param="home" onClick={this.props.navigate}>Home</SceneLink>
-          </li>
-
-          <li role="presentation" className={this.props.scene === 'splash' ? 'active' : ''}>
-            <SceneLink param="splash" onClick={this.props.navigate}>Splash</SceneLink>
-          </li>
-
-          <li role="presentation" className={this.props.scene === 'devices' ? 'active' : ''}>
-            <SceneLink param="devices" onClick={this.props.navigate}>Devices</SceneLink>
-          </li>
-
-        </ul>
-
-        <Scene scene="splash" current={scene}>
-          <Splash />
-        </Scene>
-
         <Scene scene="home" current={scene}>
           <Home {...this.props}/>
-        </Scene>
-
-        <Scene scene="devices" current={scene}>
-          <DevicesContainer />
         </Scene>
         <hr />
         <p className="help-block">

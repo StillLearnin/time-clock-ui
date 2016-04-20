@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import styles from './App.css';
 
 // components (scenes) that will be displayed by this component
 import Home from './pages/Home';
@@ -14,19 +15,10 @@ export default class App extends Component {
     const { scene } = this.props;
 
     return (
-      <div className="container">
+      <div className={styles.container}>
         <Scene scene="home" current={scene}>
           <Home {...this.props}/>
         </Scene>
-        <hr />
-        <p className="help-block">
-          <strong>Use CTRL + H to show/hide the redux dev tool.</strong> <br />
-          <strong>Note</strong> that the state and the application data are independent,
-          so despite you can time travel on the state you can not do it on changes pushed to the API
-          just like when you are working with a real remote database. <br />
-          <a target="_blank" href="https://github.com/cristianszwarc/react_crud_localStorage">GitHub</a>
-        </p>
-
       </div>
     );
 

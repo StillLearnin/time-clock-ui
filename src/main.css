@@ -1,5 +1,8 @@
-
-body {
-  background: white;
-  margin: auto;
+html,
+body,
+body > div,
+body > div > div {
+  background-color: white;
+  margin: 0;
+  height: 100%;
 }

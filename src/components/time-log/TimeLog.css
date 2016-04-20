@@ -2,10 +2,14 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.timeLogPanel {
+    background-color: #FFF;
+}
+
 table {
     border-collapse: collapse;
     border: 1px solid #0070A8;
-    width: 350px;
+    width: auto;
 }
 
 table,

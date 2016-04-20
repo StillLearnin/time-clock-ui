@@ -91,9 +91,12 @@ export default class PunchPanel extends Component {
   }
 
   digclock() {
-    var d = new Date()
-    var t = d.toLocaleTimeString()
-
-    document.getElementById("clock").innerHTML = t
+    var d = new Date();
+    var options = {
+      weekday: "long", year: "numeric", month: "short",
+      day: "numeric"
+    };
+    var t = d.toLocaleTimeString("en-us", options);
+    document.getElementById("clock").innerHTML = t;
   }
 }

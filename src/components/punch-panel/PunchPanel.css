@@ -10,8 +10,12 @@
 
 .clock {
     text-align: center;
-    padding: 15px;
-    font-size: 35px;
+    padding: 10px;
+    font-size: 25px;
+    background-color: #CCCCCC;
+    border-radius: 3px;
+    border: 1px solid dimgray;
+    margin: 0 0 5px 0;
 }
 
 .punchPanel button {
@@ -60,8 +64,7 @@
 
 @media (min-width: 600px) {
     .punchPanelWrapper {
-        max-width: 300px;
-        margin: auto;
-        margin-right: 0px;
+        width: 300px;
+        margin: 10px;
     }
 }

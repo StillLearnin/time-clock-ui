@@ -29,6 +29,7 @@ export default class TimeLog extends Component {
     }
 
     return (
+      <div className={styles.timeLogPanel}>
         <table>
             <thead>
                 <tr>
@@ -41,6 +42,7 @@ export default class TimeLog extends Component {
                 {days.map(this.getDayRow)}
             </tbody>
         </table>
+      </div>
     )
   }
 

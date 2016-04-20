@@ -8,8 +8,8 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className={styles.appBody}>
-        <div className={styles.container}>
+      <div className={styles.homeBody}>
+        <div className={styles.containerLeft}>
           <PunchPanel {...this.props} />
         </div>
         <div className={styles.containerRight}>

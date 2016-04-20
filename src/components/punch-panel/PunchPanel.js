@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './PunchPanel.css';
+import css from './PunchPanel.css';
 
 export default class PunchPanel extends Component {
 
@@ -13,12 +13,12 @@ export default class PunchPanel extends Component {
 
   render() {
     var s = true;
-    var bt = s ? styles.punchIn : styles.punchOut;
+    var bt = s ? css.punchIn : css.punchOut;
     var btText = s ? "Punch In" : "Punch Out";
     return (
-      <div className={styles.punchPanelWrapper}>
-        <div className={styles.punchPanel}>
-            <div id="clock" className={styles.clock}>
+      <div className={css.punchPanelWrapper}>
+        <div className={css.punchPanel}>
+            <div id="clock" className={css.clock}>
               Loading...
             </div>
             <button type="button" className={bt}

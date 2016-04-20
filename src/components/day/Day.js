@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Time from '../time/Time';
-import styles from './Day.css';
+import css from './Day.css';
 
 var Day = React.createClass ({
   getInitialState() {
@@ -19,19 +19,19 @@ var Day = React.createClass ({
   getDayDetail() {
       var day = this.props.day;
     return <td onClick={this.toggleCollapsed}
-                className={styles.day}>
-        <div className={styles.day}>{day.date}</div>
+                className={css.day}>
+        <div className={css.day}>{day.date}</div>
         { this.getTotalTime(true) }
     </td>;
   },
 
   getTimeDetail() {
     if (this.state.day.isExpanded == false)
-        return <td className={styles.punches} onClick={this.toggleCollapsed}>
+        return <td className={css.punches} onClick={this.toggleCollapsed}>
             {this.getTotalTime(false)}
         </td>;
 
-    return <td className={styles.punches}>
+    return <td className={css.punches}>
     {this.props.day.punches.map(this.getTime)}</td>;
   },
 
@@ -42,7 +42,7 @@ var Day = React.createClass ({
   getTotalTime(showExpanded) {
       var day = this.props.day;
         if (day.isExpanded == showExpanded)
-            return <div className={styles.day}>{day.total.hours} Hrs. {day.total.minutes} Min.</div>;
+            return <div className={css.day}>{day.total.hours} Hrs. {day.total.minutes} Min.</div>;
         else
             return null;
   },

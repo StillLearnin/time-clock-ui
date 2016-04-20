@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import styles from './Time.css';
+import css from './Time.css';
 
 class Time extends Component {
 
   render() {
     return (
-        <div className={styles.punchRow}>
-            <div className={styles.punchIn}>
+        <div className={css.punchRow}>
+            <div className={css.punchIn}>
                 {this.props.punch.in}
             </div>
-            <div className={styles.punchOut}>
+            <div className={css.punchOut}>
                 {this.props.punch.out}
             </div>
         </div>

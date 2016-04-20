@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import styles from './App.css';
+import css from './App.css';
 
 // components (scenes) that will be displayed by this component
 import Home from './pages/Home';
@@ -15,7 +15,7 @@ export default class App extends Component {
     const { scene } = this.props;
 
     return (
-      <div className={styles.container}>
+      <div className={css.container}>
         <Scene scene="home" current={scene}>
           <Home {...this.props}/>
         </Scene>

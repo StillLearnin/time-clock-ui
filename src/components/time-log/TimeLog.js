@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Day from '../day/Day';
-import styles from './TimeLog.css';
+import css from './TimeLog.css';
 
 export default class TimeLog extends Component {
 
@@ -29,7 +29,7 @@ export default class TimeLog extends Component {
     }
 
     return (
-      <div className={styles.timeLogPanel}>
+      <div className={css.timeLogPanel}>
         <table>
             <thead>
                 <tr>
@@ -47,7 +47,7 @@ export default class TimeLog extends Component {
   }
 
   getDayRow(day, index) {
-    return  <Day key={day.date} className={styles.day} day={day}/>;
+    return  <Day key={day.date} className={css.day} day={day}/>;
   }
 
 }

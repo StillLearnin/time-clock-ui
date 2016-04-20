@@ -61,7 +61,7 @@ if (TARGET === 'start') {
 
       // parse host and port from env so this is easy
       // to customize
-      host: process.env.HOST,
+      host: '0.0.0.0', //process.env.HOST,
       port: process.env.PORT,
     },
     plugins: [

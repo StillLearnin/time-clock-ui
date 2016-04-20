@@ -7,7 +7,7 @@ import {
 } from '../actions/app';
 
 const INITIAL_STATE = {
-  scene: 'time-clock',  // the initial scene
+  scene: 'home',  // the initial scene
   days: [],
   daysFetching: false   // to display a 'loading..' when fetching
 };

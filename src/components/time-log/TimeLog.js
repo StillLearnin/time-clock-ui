@@ -11,26 +11,28 @@ export default class TimeLog extends Component {
 
   render() {
 
-    const { days, daysFetching } = this.props;
+    const { days, daysFetching, punching } = this.props;
 
-    // if (daysFetching) {
-    //   return (
-    //     <div className={css.timeLogPanel}>
-    //       <div className={appcss.alertInfo}>
-    //         Loading...
-    //       </div>
-    //     </div>
-    //   );
-    // }
-
-    if (!days || days.length<1) {
-      return (
-        <div className={css.timeLogPanel}>
-          <div className={appcss.alertInfo}>
-            <p><span className={appcss.textBold}>No punches found.</span> Feel free to punch in if you're ready to start working.</p>
+    if (!punching || !days) {
+      if (daysFetching) {
+        return (
+          <div className={css.timeLogPanel}>
+            <div className={appcss.alertInfo}>
+              Loading...
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
+
+      if (!days || days.length<1) {
+        return (
+          <div className={css.timeLogPanel}>
+            <div className={appcss.alertInfo}>
+              <p><span className={appcss.textBold}>No punches found.</span> Feel free to punch in if you're ready to start working.</p>
+            </div>
+          </div>
+        );
+      }
     }
 
     return (

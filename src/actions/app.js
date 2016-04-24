@@ -17,11 +17,12 @@ export function appNavigate(value) {
 
 export function punchClock() {
   return function (dispatch) {
-    dispatch(punching())
     localforage.getItem('days').then(function(days) {
+      dispatch(punching())
       if (!days)
         days = []
 
+      var isNewDay = false;
       var existingDay;
       var today = moment().format("dddd, MMMM D");
       for (var index = 0; index < days.length; index++) {
@@ -30,7 +31,8 @@ export function punchClock() {
           break;
         }
       }
-      if (!existingDay)
+      if (!existingDay) {
+        isNewDay = true;
         existingDay = {
             key: today,
             date: today,
@@ -43,6 +45,7 @@ export function punchClock() {
             isNew: true,
             isChanged: true
         };
+      }
       else {
         existingDay.isExpanded = true;
         existingDay.isChanged = true;
@@ -58,15 +61,20 @@ export function punchClock() {
         }
       );
 
-      if (existingDay.isNew == true)
+      if (isNewDay)
         days.push(existingDay);
 
+      return days;
+    }).then(function(days) {
       dispatch(saveDays(days))
-    }).catch(function (err) {
+      return days;
+    }).then(function(days) {
+      dispatch(punched(days))
+      return days;
+    })
+    .catch(function (err) {
       // we got an error
     });
-
-    dispatch(punched(null))
   }
 }
 

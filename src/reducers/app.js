@@ -1,5 +1,7 @@
 import {
   APP_NAVIGATE,
+  CLOCK_PUNCHING,
+  CLOCK_PUNCHED,
   DAYS_FETCHING,
   DAYS_FETCHED,
   DAYS_SAVING,
@@ -7,9 +9,11 @@ import {
 } from '../actions/app';
 
 const INITIAL_STATE = {
-  scene: 'home',  // the initial scene
+  scene: 'home',        // the initial scene
   days: [],
-  daysFetching: false   // to display a 'loading..' when fetching
+  daysFetching: false,  // to display a 'loading..' when fetching
+  punching: false,      // in the middle of punching process
+  daysSaving: false
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -24,15 +28,19 @@ export default function(state = INITIAL_STATE, action) {
 
     // hide the loading and set the loaded data into days
     case DAYS_FETCHED:
-      return { ...state, daysFetching: false, days: action.payload};
+      return { ...state, daysFetching: false, days: action.payload };
 
-    // the list is being loaded, show the loading.. and reset the days
+    case CLOCK_PUNCHING:
+      return { ...state, punching: true };
+
+    case CLOCK_PUNCHED:
+      return { ...state, punching: false };
+
     case DAYS_SAVING:
-      return { ...state, daysFetching: true, days: [] };
+      return { ...state, daysSaving: true };
 
-    // hide the loading and set the loaded data into days
     case DAYS_SAVED:
-      return { ...state, daysFetching: false, days: action.payload};
+      return { ...state, daysSaving: false, days: action.payload};
 
     // do nothing
     default:

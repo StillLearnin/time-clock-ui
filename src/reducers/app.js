@@ -13,7 +13,8 @@ const INITIAL_STATE = {
   days: [],
   daysFetching: false,  // to display a 'loading..' when fetching
   punching: false,      // in the middle of punching process
-  daysSaving: false
+  daysSaving: false,
+  isPunchedIn: false
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -34,7 +35,7 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, punching: true };
 
     case CLOCK_PUNCHED:
-      return { ...state, punching: false };
+      return { ...state, punching: false, isPunchedIn: action.payload };
 
     case DAYS_SAVING:
       return { ...state, daysSaving: true };

@@ -16,6 +16,31 @@ function getDay(key, days) {
   }
 }
 
+function addPunch(day) {
+  var lastPunch = day.punches.pop();
+  if (lastPunch && lastPunch.out) {   //last punch already has punch out
+    day.punches.push(lastPunch);  //so simply return punch to array
+    lastPunch = createNewPunch();
+  }
+  else if (lastPunch) {               //there is a non-complete punch to finish
+    lastPunch.out = moment().format("h:mm:ss");
+    lastPunch.isChanged = true;
+  }
+  else {                              //need a totally new punch
+    lastPunch = createNewPunch();
+  }
+  day.punches.push(lastPunch);
+  return lastPunch;
+}
+
+function createNewPunch() {
+  return {
+    id: moment().format("h:mm:ss"),
+    in : moment().format("h:mm:ss"),
+    isNew: true,
+    isChanged: true
+  };
+}
 export function appNavigate(value) {
   return {
     type: APP_NAVIGATE,
@@ -67,26 +92,21 @@ export function punchClock() {
         thisDay.isChanged = true;
       }
 
-      thisDay.punches.push(
-        {
-          id: moment().format("h:mm:ss"),
-          in : moment().format("h:mm:ss"),
-          out: moment().format("h:mm:ss"),
-          isNew: true,
-          isChanged: true
-        }
-      );
+      var lastPunch = addPunch(thisDay);
+      var isPunchedIn = !lastPunch.out;
 
       if (isNewDay)
         days.push(thisDay);
 
-      return days;
-    }).then(function(days) {
-      dispatch(saveDays(days))
-      return days;
-    }).then(function(days) {
-      dispatch(punched(days))
-      return days;
+      return { days: days, isPunchedIn: isPunchedIn };
+
+    }).then(function(data) {
+      dispatch(saveDays(data.days))
+      dispatch(savePunchedIn(data.isPunchedIn))
+      return data.isPunchedIn;
+    }).then(function(isPunchedIn) {
+      dispatch(punched(isPunchedIn))
+      return isPunchedIn;
     }).catch(console.log.bind(console));
   }
 }
@@ -129,13 +149,20 @@ export function fetched(data) {
   };
 }
 
+export function savePunchedIn(isPunchedIn) {
+  return function (dispatch) {
+    // async save
+    localforage.setItem('isPunchedIn', isPunchedIn).catch(console.log.bind(console));
+  }
+}
+
 export function saveDays(days) {
   return function (dispatch) {
 
-    // show a loading
+    // show a saving
     dispatch(saving())
 
-    // async load
+    // async save
     localforage.setItem('days', days).then(
       (days) => dispatch(saved(days))
     ).catch(console.log.bind(console));

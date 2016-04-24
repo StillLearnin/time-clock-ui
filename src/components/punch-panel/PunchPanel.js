@@ -13,9 +13,9 @@ export default class PunchPanel extends Component {
   }
 
   render() {
-    var s = true;
-    var bt = s ? css.punchIn : css.punchOut;
-    var btText = s ? "Punch In" : "Punch Out";
+    const { isPunchedIn } = this.props;
+    var bt = !isPunchedIn ? css.punchIn : css.punchOut;
+    var btText = !isPunchedIn ? "Punch In" : "Punch Out";
     return (
       <div className={css.punchPanelWrapper}>
         <div className={css.clockPanel}>

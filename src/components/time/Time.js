@@ -10,7 +10,7 @@ class Time extends Component {
                 {this.props.punch.in}
             </div>
             <div className={css.punchOut}>
-                {this.props.punch.out}
+                {this.props.punch.out || "-"}
             </div>
         </div>
     );

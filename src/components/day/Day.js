@@ -3,9 +3,6 @@ import Time from '../time/Time';
 import css from './Day.css';
 
 var Day = React.createClass ({
-  getInitialState() {
-    return { day: this.props.day };
-  },
 
   render() {
     return (
@@ -17,7 +14,7 @@ var Day = React.createClass ({
   },
 
   getDayDetail() {
-      var day = this.props.day;
+    var day = this.props.day;
     return <td onClick={this.toggleCollapsed}
                 className={css.day}>
         <div className={css.day}>{day.date}</div>
@@ -26,7 +23,7 @@ var Day = React.createClass ({
   },
 
   getTimeDetail() {
-    if (this.state.day.isExpanded == false)
+    if (this.props.day.isExpanded == false)
         return <td className={css.punches} onClick={this.toggleCollapsed}>
             {this.getTotalTime(false)}
         </td>;
@@ -48,9 +45,7 @@ var Day = React.createClass ({
   },
 
   toggleCollapsed() {
-      var newDay = this.state.day;
-      newDay.isExpanded = !newDay.isExpanded;
-      this.setState({ day: newDay  });
+      this.props.toggleCollapsed(this.props.day.key);
   }
 });
 

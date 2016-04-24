@@ -11,8 +11,7 @@ export default class TimeLog extends Component {
 
   render() {
 
-    const { days, daysFetching, punching } = this.props;
-
+    const { days, daysFetching, punching, toggleCollapsed } = this.props;
     if (!punching || !days) {
       if (daysFetching) {
         return (
@@ -38,23 +37,22 @@ export default class TimeLog extends Component {
     return (
       <div className={css.timeLogPanel}>
         <table>
-            <thead>
-                <tr>
-                    <th colSpan="2">Time Log</th>
-                </tr>
-            </thead>
-            <tfoot>
-            </tfoot>
-            <tbody>
-                {days.map(this.getDayRow)}
-            </tbody>
+          <thead>
+            <tr>
+              <th colSpan="2">Time Log</th>
+            </tr>
+          </thead>
+          <tfoot>
+          </tfoot>
+          <tbody>
+            {days.map(function(day, i) {
+              return (
+                <Day toggleCollapsed={toggleCollapsed} key={day.date} className={css.day} day={day}/>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     )
   }
-
-  getDayRow(day, index) {
-    return  <Day key={day.date} className={css.day} day={day}/>;
-  }
-
 }

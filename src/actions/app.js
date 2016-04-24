@@ -8,11 +8,33 @@ export const DAYS_SAVED = 'DAYS_SAVED';
 import localforage from 'localforage';
 import moment from 'moment';
 
+function getDay(key, days) {
+    for (var index = 0; index < days.length; index++) {
+    if (days[index].key === key){
+      return days[index];
+    }
+  }
+}
+
 export function appNavigate(value) {
   return {
     type: APP_NAVIGATE,
     payload: value
   };
+}
+
+export function toggleCollapsed(day) {
+  return function (dispatch) {
+    localforage.getItem('days').then(function(days) {
+      var d = getDay(day, days)
+      if (d)
+        d.isExpanded = !d.isExpanded
+      return days
+    }).then(function(days) {
+        dispatch(saveDays(days))
+        return days;
+    }).catch(console.log.bind(console));
+  }
 }
 
 export function punchClock() {
@@ -22,18 +44,12 @@ export function punchClock() {
       if (!days)
         days = []
 
-      var isNewDay = false;
-      var existingDay;
       var today = moment().format("dddd, MMMM D");
-      for (var index = 0; index < days.length; index++) {
-        if (days[index].date === today){
-          existingDay = days[index];
-          break;
-        }
-      }
-      if (!existingDay) {
-        isNewDay = true;
-        existingDay = {
+      var thisDay = getDay(today, days)
+      var isNewDay = !thisDay;
+
+      if (isNewDay) {
+        thisDay = {
             key: today,
             date: today,
             isExpanded: true,
@@ -47,11 +63,11 @@ export function punchClock() {
         };
       }
       else {
-        existingDay.isExpanded = true;
-        existingDay.isChanged = true;
+        thisDay.isExpanded = true;
+        thisDay.isChanged = true;
       }
 
-      existingDay.punches.push(
+      thisDay.punches.push(
         {
           id: moment().format("h:mm:ss"),
           in : moment().format("h:mm:ss"),
@@ -62,7 +78,7 @@ export function punchClock() {
       );
 
       if (isNewDay)
-        days.push(existingDay);
+        days.push(thisDay);
 
       return days;
     }).then(function(days) {
@@ -71,10 +87,7 @@ export function punchClock() {
     }).then(function(days) {
       dispatch(punched(days))
       return days;
-    })
-    .catch(function (err) {
-      // we got an error
-    });
+    }).catch(console.log.bind(console));
   }
 }
 
@@ -99,9 +112,7 @@ export function fetch() {
     // async load
     localforage.getItem('days').then(
       (data) => dispatch(fetched(data))
-    ).catch(function (err) {
-      // we got an error
-    });
+    ).catch(console.log.bind(console));
   }
 }
 
@@ -127,9 +138,7 @@ export function saveDays(days) {
     // async load
     localforage.setItem('days', days).then(
       (days) => dispatch(saved(days))
-    ).catch(function (err) {
-      // we got an error
-    });
+    ).catch(console.log.bind(console));
   }
 }
 

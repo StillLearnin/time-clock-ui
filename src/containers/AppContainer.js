@@ -26,6 +26,10 @@ const mapDispatchToProps = (dispatch) => {
 
     punchClock: () => {
       dispatch(actions.punchClock());
+    },
+
+    toggleCollapsed: (day) => {
+      dispatch(actions.toggleCollapsed(day));
     }
   }
 }

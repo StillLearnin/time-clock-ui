@@ -15,12 +15,6 @@ This uses local storage for two tasks:
 **Web app**
 Can be added to IOS/Andriod home screen and each time is loaded the state remains the same (because the persistent state plugin).
 
-**No routes**
-Routes are amazing and are a requirement in many cases but this is a trial to check an alternative way when there is no need to provide bookmarks to sections or server rendering.
-
-**To do**
-Learn more and improve this example.
-
 **Use**
 ```
 npm install

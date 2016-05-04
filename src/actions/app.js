@@ -23,7 +23,7 @@ function addPunch(day) {
     lastPunch = createNewPunch();
   }
   else if (lastPunch) {               //there is a non-complete punch to finish
-    lastPunch.out = moment().add(7, 'm').format("h:mm:ss A");
+    lastPunch.out = moment().add(15, 'm').format("h:mm:ss A");
     lastPunch.isChanged = true;
   }
   else {                              //need a totally new punch

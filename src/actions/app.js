@@ -23,7 +23,7 @@ function addPunch(day) {
     lastPunch = createNewPunch();
   }
   else if (lastPunch) {               //there is a non-complete punch to finish
-    lastPunch.out = moment().format("h:mm:ss");
+    lastPunch.out = moment().add(7, 'm').format("h:mm:ss A");
     lastPunch.isChanged = true;
   }
   else {                              //need a totally new punch
@@ -35,12 +35,29 @@ function addPunch(day) {
 
 function createNewPunch() {
   return {
-    id: moment().format("h:mm:ss"),
-    in : moment().format("h:mm:ss"),
+    id: moment().format("h:mm:ss A"),
+    in : moment().format("h:mm:ss A"),
+    out: null,
     isNew: true,
     isChanged: true
   };
 }
+
+function calcTimeForDay(day) {
+  var totalMinutes = 0;
+  for (var index = 0; index < day.punches.length; index++) {
+    var punch = day.punches[index];
+    if (punch.in && punch.out) {
+      var startTime = moment(punch.in, 'h:mm:ss A');
+      var endTime = moment(punch.out, 'h:mm:ss A');
+
+      totalMinutes = totalMinutes + endTime.diff(startTime, 'minutes');
+    }
+  }
+  day.total.hours = Math.floor(totalMinutes / 60);
+  day.total.minutes = totalMinutes % 60;
+}
+
 export function appNavigate(value) {
   return {
     type: APP_NAVIGATE,
@@ -69,14 +86,14 @@ export function punchClock() {
       if (!days)
         days = []
 
-      var today = moment().format("dddd, MMMM D");
-      var thisDay = getDay(today, days)
+      var key = moment().format("MM/DD/Y");
+      var thisDay = getDay(key, days)
       var isNewDay = !thisDay;
 
       if (isNewDay) {
         thisDay = {
-            key: today,
-            date: today,
+            key: key,
+            date: moment().format("dddd, MMMM D"),
             isExpanded: true,
             total: {
               hours: 0,
@@ -91,9 +108,10 @@ export function punchClock() {
         thisDay.isExpanded = true;
         thisDay.isChanged = true;
       }
-
       var lastPunch = addPunch(thisDay);
-      var isPunchedIn = !lastPunch.out;
+      var isPunchedIn = lastPunch && lastPunch.in && !lastPunch.out;
+
+      calcTimeForDay(thisDay);
 
       if (isNewDay)
         days.push(thisDay);
